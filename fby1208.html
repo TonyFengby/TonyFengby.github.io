@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h2>JavaScript的内置对象</h2>
+		<h3>1、JavaScript的内置对象_String</h3>
+		<h4>String对象</h4>
+		<pre>
+	new String(s);
+	String(s)
+	s 是你要转换的原字符串的值.
+		</pre>
+		<h4>String对象属性</h4>
+		<pre>
+	var str="这是String对象属性"
+	console.log(str.length());
+	//会显示它的长度是12;	     
+		</pre>
+		<h4>String对象方法</h4>
+		<p>indexOf()返回某个指定的字符串值在字符串中首次出现的位置/p>
+		<pre>
+	var str = "我是字符我串";
+	console.log(str.indexOf("我",str.indexOf("我")+1));
+	//会显示4,如果你搜不到你要找的会输出-1,这种方法比较安全,+1是可以搜索第二个位置
+		</pre>
+		
+		<p>match()字符串内检索指定的值，或找到一个或多个正则表达式的匹配</p>
+		<pre>
+	var str = "我是字符我串";
+	str.match("是");
+	//如果匹配到则返回值,否则输出null;
+		</pre>
+		<p>substr在字符串中抽取从 start 下标开始的指定数目的字符</p>
+		<pre>
+	var str = "我是字符我串";
+	str.substr(1,2);
+	//1代表从第二个字符开始截取,截两个字符,不改变原字符串;
+		</pre>
+		<p>slice提取字符串的某个部分，并以新的字符串返回被提取的部分</p>
+		<p>split把一个字符串分割成字符串数组</p>
+		<pre>
+	var str = "我是字符我串";
+	console.log(str.split("是"));
+	//会显示    "我是,字符我串,"  返回的两个数组;
+		</pre>
+		
+		<h3>2、JavaScript的内置对象_Array</h3>
+		<h4>Array对象</h4>
+		<pre>
+	var arr = ["","",""];
+	var arr1 = [];
+	//不推荐使用下面的
+	var arr2 = new Array();
+	var arr3 = Array();			
+		</pre>
+		<h4>Array对象属性</h4>
+		<pre>
+	var arr	= [1,2,3,4];
+	console.log(arr.length);
+	//显示4
+		</pre>
+		<h4>Array对象方法</h4>
+		<pre>
+     var arr2 = new Array();
+     var arr3 = new Array();
+     var arr3 = Array();
+     var arr = [];
+     arr.push("zhangsan");
+     arr.push("zhangsan1");
+     arr.push("zhangsan2");
+      //pop是删除最后一个元素并返回最后一个元素
+      //push是在最后一个添加
+      //unshift是给开头增加一个元素或多个，并返回长度
+      //shift是删除第一个元素并返回第一个元素	
+      //splice删除元素，并向数组添加新元素
+      console.log(arr.splice(1,2)+"==="+arr)
+      Array.isArray(arr)
+      //判断是否是数组
+		</pre>
+	</body>
+</html>
