@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h2>JavaScript内置对象_Date和BOM对象</h2>
+		<h3>Date的声明方式</h3>
+
+		<p>var time=new Date();</p>
+		<p>console.log(time);</p>
+		<p>//"Sat Dec 10 2016 11:02:28 GMT+0800 (中国标准时间)";</p>
+		<p>var time=new Date(你可以可以直接在这输入日期，如：2016-12-12)</p>
+		<p>//如何获取年月日等</p>
+		<p>var timeY=time.getFullYear()//年 </p>
+		<p>var timeM=time.getMonth()+1//月  这里加1是因为月份从0开始，例如11月份它显示的就是10，所以要加1</p>
+		<p>var timeD=time.getDate()//日  获取日期几号 如果你是自己写的日期，例如2016-12-0，那你获取到的是这个月的天数</p>
+		<p>var timed=time.getDay()//周几   从0开始，在国外0 代表星期日，所以如果你想要对应，你可以设置数组来对应</p>
+		<p>var timeH=time.getHours()//小时  0-23</p>
+		<p>var timem=time.getMinutes()//分钟 0-59</p>
+		<p>var timeS=time.getSeconds()//秒 0-59</p>
+		<p>//其他还有毫秒等，自己可以搜索一下	</p>		
+
+	    <h3>BOM——简称浏览器对象模型</h3>
+	    <h4>1、Window</h4>
+	    <h4>window的对象属性</h4>
+	    <p>window.closed()   //返回窗口是否已被关闭</p>
+	    <p>实例</p>
+		    <pre>
+div id="box">
+警告：本页面将在<span id="time">5</span>秒后关闭！！！
+/div>		
+    var box=document.getElementById('box');
+    var time=document.getElementById('time');
+    var n=time.innerText;
+    function name(){		    	
+    	n--;
+    	if(n==0){
+    		window.close();
+    		时间会从5变为0，当为0的时候这个页面将关闭
+    	}
+    	setTimeout(name,1000);
+    	time.innerText=n;
+    }
+    name();
+	    </pre>
+        
+        <p>defaultStatus  //设置或返回窗口状态栏中的默认文本</p>
+        <p>window.defaultStatus="This is the default text in the status bar!!";</p>
+        <p>这个东西只在欧朋浏览器看的到</p>       
+        <p>其他比如还有一些document、history等</p>
+        
+        <h4>window的对象方法</h4>
+        <p>alert()   //这个应该大家比较熟，弹窗，但一般不建议使用</p>
+        <p>setInterval()/clearInterval()   setTimeout()/clearTimeout()</p>
+        <p>一个是定时器/取消定时器，一个是延时器/取消延时器</p>
+        <p>它们两个的区别我暂时只知道定时器是每隔n秒执行一次，而延时器是n毫秒后执行一次</p>
+        <p>confirm()、print()、scrollTo()等自己可以去了解下</p>
+        
+        <h4>2、Navigator</h4>//包含有关浏览器的信息
+        <h4>navigator对象属性</h4>
+        <p>appCodeName   返回浏览器的代码名</p>
+        <p>appMinorVersion   返回浏览器的次级版本</p>
+        <p>appName   返回浏览器的名称</p>
+        <p>...//剩余一些可以自己了解</p>
+        <p>navigator的方法描述因为不常用可以了解下</p>
+        
+        <h4>3、Screen</h4>//包含有关客户端显示屏幕的信息
+        <p>availHeight  availWidth</p>
+        <p>前者是屏幕的高度，后者是宽度，两者都是除 Windows任务栏之外</p>
+        
+        <h4>4、History</h4>
+        <p>history.length  返回浏览器历史中列表中的URL数量</p>
+        <p>history.back()  加载 history 列表中的前一个 URL</p>
+        <p>history.forward()  加载 history 列表中的下一个 URL</p>
+        <p>history.go()  加载 history 列表中的某个具体页面</p>
+        <pre>
+    function goBack()
+  {
+  window.history.go(-1)     //会返回到前一个页，如果写1会跳转到下一个页面
+  }
+        </pre>
+       
+        <h4>5、Location</h4>
+        <p>location.host  设置或返回主机名和当前 URL 的端口号</p>
+        <p>document.write(location.host)  主机名127.0.0.1  端口号8020</p>
+        <p>location.hostname  设置或返回当前 URL 的主机名</p>
+        <p>location.port  设置或返回当前 URL 的端口号</p>
+        <p>document.write(location.port)  当前端口号8020</p>
+        
+        <p>下午测试题</p>
+        <p>用Array自带的排序方法对</p>
+        <pre>
+	var arr = [100,40,2,101,20,25,49,4];
+	console.log("排序前："+arr);
+	arr.sort(function(a,b){
+		return b-a;
+	});
+	console.log("排序后："+arr)
+	"排序前：100,40,2,101,2,0,25,49,4"
+	"排序后：101,100,49,40,25,20,4,2"
+	这个是降序，如果写成a-b则是升序
+        </pre>
+        
+        
+	</body>
+</html>
