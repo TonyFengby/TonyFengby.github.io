@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			img{
+				width: 30px;
+				height: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			document.getElementById()
+		</script>
+	    <h2>JavaScript事件_Event</h2>
+	    <h3>Event对象</h3>
+	    <p>Event 对象代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。</p>
+	    <h3>Event属性</h3>
+	    <p>常见的有onclick  点击某个对象时调用事件</p>
+	    <pre>
+//假设你要点击按钮使字体变色
+var input=document.getElementById("input");
+var box=document.getElementById("box");
+input.onclick=function(){
+	box.style.color=red;
+}
+	    </pre>
+	    <p>ondblclick  双击某个对象时调用事件</p>
+	    <p>onfocus   元素获得焦点</p>
+	    <pre>
+//在获取焦点时才能动作
+var input=document.getElementById("input");
+input.onfocus=function (){
+	...里面写你想执行的动作
+}
+	    </pre>
+	    <p>onkeydown  某个键盘按键被按下</p>
+	    <pre>
+//你按下某个键盘显示它的键值
+function (e){
+var m=event.keyCode;
+e.onkeydown=m;
+}
+	    </pre>
+	    <p>onmousemove   鼠标移动</p>
+	    <pre>
+//鼠标在窗口移动获取它的XY值
+window.onmousemove=function move(e){
+sp1.innerText=e.clientX;
+sp2.innerText=e.clientY;
+}
+	    </pre>
+	    <p>addEventListener</p>
+	    <pre>
+//也可以用这个来运用事件，但有on的事件要去掉on
+var box=document.getElementById("box");
+box.addEventListener("click",dianji,false);
+//括号里的第一个元素表示事件，但要去掉on，第二个表示执行的函数，第三个表示采用事件流还是冒泡流，false表示冒泡流，true表示事件流，不写默认是false
+dianji(){
+	...执行的动作
+}
+	    </pre>
+	    <p style="color: red;">事件流与冒泡流</p>
+	    <p style="color: red;">好比上级领导发布命令，向下级层层传递，得到寄过以后再层层向上反馈</p>
+	    <p style="color: red;">事件流只会在最后响应，就是只有目标会作出动作，而冒泡流则是它所有父级都会作出动作</p>
+	    <pre>
+	  //这是一个点击事件，点击以后会倒计时，如下图
+var btn=document.getElementById("btn");
+	btn.addEventListener("click",move,false);
+	var t=5;
+	function move(){				
+		btn.innerHTML=t+"秒后重新获取";
+		btn.disabled=true;
+		siv1=window.setInterval(time,1000);
+	}
+	function time(){
+		t--;
+		btn.innerHTML=t+"秒后重新获取";
+		if(t<=0){
+		btn.innerHTML="获取手机验证码";
+		btn.disabled=false;
+		t=5;
+		clearInterval(siv1);
+	}
+	
+}
+
+	    </pre>
+	<div id="a">
+	  	  点击前<img src="http://image18.poco.cn/mypoco/myphoto/20161212/19/18483833820161212195717068_640.jpg?130x47_130" style="width: 100px;"/>
+	         点击后<img src="http://image18.poco.cn/mypoco/myphoto/20161212/19/18483833820161212195922060_640.jpg?124x37_130" style="width: 100px;"/>
+	  </div>
+
+	    
+	    
+	   <pre>
+<h4>//获取时间，主要代码如下</h4>
+var img=document.getElementsByTagName("img");          
+var arr=["星期一","星期二","星期三","星期四","星期五","星期六","星期日"];
+var arr1=["images/0.png","images/1.png","images/2.png","images/3.png","images/4.png","images/5.png","images/6.png","images/7.png","images/8.png","images/9.png"]
+	function timeUpdate(){
+		var time=new Date();
+		var timeY=time.getFullYear();
+		var timeM=time.getMonth()+1;
+		var timeD=time.getDate();
+		var timed=time.getDay();
+		var timeH=time.getHours();
+		var timem=time.getMinutes();
+		var timeS=time.getSeconds();
+		var a=parseInt(timeH/10);
+		var b=timeH%10;
+		var c=parseInt(timem/10);
+		var d=timem%10;
+		var e=parseInt(timeS/10);
+		var f=timeS%10;
+		box.innerHTML=(timeY+"年"+timeM+"月"+timeD+"日"+arr[timed-1]+"</br>");
+		img[0].src=arr1[a];	
+		img[1].src=arr1[b];	
+		img[2].src="images/dot.png";	
+		img[3].src=arr1[c];	
+		img[4].src=arr1[d];	
+		img[5].src="images/dot.png";
+		img[6].src=arr1[e];	
+		img[7].src=arr1[f];
+	}
+  setInterval(timeUpdate,10);
+	   </pre>
+	   <div id="box"></div>
+		<img src=""/>
+		<img src=""/>
+		<img src=""/>
+		<img src=""/>
+		<img src=""/>
+		<img src=""/>
+		<img src=""/>
+		<img src=""/>
+		<script type="text/javascript">
+            var img=document.getElementsByTagName("img");          
+			var arr=["星期一","星期二","星期三","星期四","星期五","星期六","星期日"];
+		    var arr1=["images/0.png","images/1.png","images/2.png","images/3.png","images/4.png","images/5.png","images/6.png","images/7.png","images/8.png","images/9.png"]
+				function timeUpdate(){
+					var time=new Date();
+					var timeY=time.getFullYear();
+					var timeM=time.getMonth()+1;
+					var timeD=time.getDate();
+					var timed=time.getDay();
+					var timeH=time.getHours();
+					var timem=time.getMinutes();
+					var timeS=time.getSeconds();
+					var a=parseInt(timeH/10);
+					var b=timeH%10;
+					var c=parseInt(timem/10);
+					var d=timem%10;
+					var e=parseInt(timeS/10);
+					var f=timeS%10;
+					box.innerHTML=(timeY+"年"+timeM+"月"+timeD+"日"+arr[timed-1]+"</br>");
+					img[2].src=arr1[a];	
+					img[3].src=arr1[b];	
+					img[4].src="images/dot.png";	
+					img[5].src=arr1[c];	
+					img[6].src=arr1[d];	
+					img[7].src="images/dot.png";
+					img[8].src=arr1[e];	
+					img[9].src=arr1[f];
+				}
+		      setInterval(timeUpdate,10);
+		</script>
+		
+		<h3>错误处理error</h3>
+		<p>throw、try、catch</p>
+		<p>
+try 语句测试代码块的错误
+
+catch 语句处理错误
+
+throw 语句创建自定义错误
+
+		</p>
+		<pre>
+try
+  {
+  //在这里运行代码
+  }
+catch(err)
+  {
+  //在这里处理错误
+  }
+
+		</pre>		
+	</body>
+</html>
