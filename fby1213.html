@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h1>函数</h1>
+		<h2>作用域</h2>
+		<p>所谓函数作用域就是说：变量在声明它们的函数体以及这个函数体嵌套的任意函数体内都是有定义的。</p>
+    <pre>
+ function uu(){
+var num = 1;
+}
+uu();
+var num = "我是数值";
+alert(num);
+弹出我是数值，因为全局变量
+如果换成是
+function fname(){
+return num = 1;
+}
+var a = fname();
+alert(a)
+弹出1；   
+    </pre>
+		<h2>闭包</h2>
+    <pre>
+function fun(){
+console.log("我是fun函数")
+}
+}
+fun();//这里直接调用fun是没用的
+var foo = fname();
+console.log(foo());//这里可以调用到上面的匿名函数
+能访问到函数里面的函数叫闭包
+     </pre>
+		<p>产生闭包的关键是，一个在函数 A内的声明的函数 B被传出 A 之外，并且 B 函数内使用了在 函数A 内生成的数据（声明或按值传参）
+			</p><p>广义上来说，函数运行时都会形成闭包，没有数据在函数外被引用时，闭包的生命周期很短：函数执行完毕即释放。
+				</p><p>闭包的独立性：即使由同一个函数产生的多个闭包也是相互独立的.</p>
+	</body>
+<html>
