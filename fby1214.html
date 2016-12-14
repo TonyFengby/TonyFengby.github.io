@@ -4,7 +4,46 @@
 		<meta charset="UTF-8">
 		<title></title>
 	</head>
-	<body>		
+	<body>
+		<h2>Canvas画布的简单操作</h2>
+		<h4>矩形</h4>
+		<pre>
+rect() 创建矩形 
+fillRect() 绘制“被填充”的矩形 
+strokeRect() 绘制矩形（无填充） 
+clearRect() 在给定的矩形内清除指定的像素 			
+
+//这是画矩形
+ctx.fillStyle="gold";
+ctx.fillRect(15,15,200,200);
+ctx.rect(10,10,210,210);		
+ctx.stroke();		
+		</pre>
+		<h4>路径</h4>
+		<pre>
+fill() 填充当前绘图（路径） 
+stroke() 绘制已定义的路径 
+moveTo() 把路径移动到画布中的指定点，不创建线条 
+lineTo() 添加一个新点，然后在画布中创建从该点到最后指定点的线条 
+bezierCurveTo() 创建三次方贝塞尔曲线 
+arc() 创建弧/曲线（用于创建圆形或部分圆） 
+		</pre>
+		<h4>转换</h4>
+		<pre>
+scale() 缩放当前绘图至更大或更小 
+rotate() 旋转当前绘图 
+translate() 重新映射画布上的 (0,0) 位置 
+		</pre>
+		<h4>图像绘制</h4>
+		<pre>
+drawImage() 向画布上绘制图像、画布或视频 			
+		</pre>
+		<h4>合成</h4>
+		<pre>
+globalCompositeOperation 设置或返回新图像如何绘制到已有的图像上 		
+		</pre>
+		
+		<p>下面是画一个猫的代码
 		<pre>	
 var canvas=document.getElementById("canvas");
 var canvas=document.getElementById("canvas");
@@ -121,6 +160,7 @@ ctx.bezierCurveTo(740,480,750,500,635,530);
 ctx.fill();
 ctx.stroke()
 		</pre>
+  <p>图如下，画的比较丑，有些地方还没有画，需要优化
 <img src="http://image18.poco.cn/mypoco/myphoto/20161214/23/18483833820161214230434068_640.jpg?726x587_130"  width:200px;height:200px>
 	</body>
 </html>
