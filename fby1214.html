@@ -27,6 +27,28 @@ moveTo() 把路径移动到画布中的指定点，不创建线条
 lineTo() 添加一个新点，然后在画布中创建从该点到最后指定点的线条 
 bezierCurveTo() 创建三次方贝塞尔曲线 
 arc() 创建弧/曲线（用于创建圆形或部分圆） 
+ctx.strokeStyle="green";
+ctx.beginPath();
+ctx.moveTo(10,10);
+ctx.lineTo(10,100);
+ctx.lineTo(100,100);
+ctx.closePath();
+ctx.stroke();
+
+ctx.fillStyle="red";
+ctx.strokeStyle="blue";
+ctx.beginPath();
+ctx.arc(100,57,50,0,1*Math.PI);
+ctx.closePath();
+ctx.fill();
+ctx.stroke();
+
+ctx.lineWidth=5;
+ctx.beginPath();
+ctx.moveTo(20,20);
+ctx.bezierCurveTo(20,20,30,200,250,20,250,30);
+ctx.stroke();
+ctx.closePath();
 		</pre>
 		<h4>转换</h4>
 		<pre>
