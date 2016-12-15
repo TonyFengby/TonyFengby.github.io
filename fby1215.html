@@ -1,1 +1,97 @@
 
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h3>用Canvas画猫</h3>
+        <p>1、先想好要画的步骤，因为在最后上色的时候上层的会将下层的颜色遮住</p>
+        <p>2、首先画猫的脸，用两次三次方贝塞尔曲线bezierCurveTo()来完成
+        <p>每一次画一半，第一次的终点就是第二次的起点，控制它的控制点来调整形状</p>
+        <p>3、画眼睛，可以用圆也可以用贝塞尔曲线，圆就是比较规矩一点，看个人喜欢，但要注意不要忘记眼白</p>
+        <p>4、接着鼻子，同样是用圆跟贝塞尔曲线</p>
+        <p>5、两边的胡须直接用直线来完成</p>
+        <p>6、耳朵也用贝塞尔曲线</p>
+        <p>7、接着画爱心，同样用两次贝塞尔曲线</p>
+        <p>8、身体可以从左边开始也可以从右边开始，我从右边开始先用贝塞尔曲线画完右边的脚</p>
+        <p>9、再画一条直线，最后再用贝塞尔曲线完成左脚</p>
+        <p>10、最后还是用贝塞尔曲线来完成尾巴</p>
+        <p>其中的一些坐标计算要自己尝试才能知道，还有一些细节的东西自己可以增加上去，大致就是这样</p>
+        <img src="http://image18.poco.cn/mypoco/myphoto/20161214/23/18483833820161214230434068_640.jpg?726x587_130" width="200px";hgheight="200px"/>
+        <h3>通过按钮来控制图片的旋转，函数的封装，思想是这样，但没写</h3>
+        <pre>
+var ipt1=document.getElementById("ipt1");
+var ipt2=document.getElementById("ipt2");
+var pic=document.getElementById("imga");
+var myCanvas=document.createElement("canvas");
+var ctx=myCanvas.getContext("2d");
+var img=new Image();
+img.src=pic.src;
+img.onload=function(){
+draw(pic);
+}
+function draw(obj){
+//myCanvas.width=obj.width;
+//myCanvas.height=obj.height;
+obj.parentNode.replaceChild(myCanvas,obj);
+ctx.drawImage(img,0,0);
+				
+ipt1.onclick=function(){
+ctx.clearRect(0,0,obj.width,obj.height);
+ctx.rotate(Math.PI/180*90);
+ctx.drawImage(img,0,-obj.height);                   
+				}
+				
+			<h3>XML的简单了解</h3>
+			<p>XML 指可扩展标记语言（EXtensible Markup Language） 
+			<p>XML 是一种标记语言，很类似 HTML 
+			<p>XML 的设计宗旨是传输数据，而非显示数据 
+			<p>XML 标签没有被预定义。您需要自行定义标签。 
+			<p>XML 被设计为具有自我描述性。 
+			<p>XML 是 W3C 的推荐标准 
+			<p>具体的用途及操作请详见官方手册</p>
+		    	    				
+        </pre>
+        <h3>SVG的简单操作</h3>
+		    <p>矩形 <rect>
+		    	<pre>
+ rect width="300" height="100"
+style="fill:rgb(0,0,255);stroke-width:1;
+stroke:rgb(0,0,0)"/>
+		    	</pre>
+			<p>圆形 <circle> 
+				<pre>
+circle cx="100" cy="50" r="40" stroke="black"
+stroke-width="2" fill="red"/>
+				</pre>
+			<p>椭圆 <ellipse> 
+				<pre>
+ellipse cx="300" cy="150" rx="200" ry="80"
+style="fill:rgb(200,100,50);
+stroke:rgb(0,0,100);stroke-width:2"/>
+				</pre>
+			<p>线 <line> 
+				<pre>
+line x1="0" y1="0" x2="300" y2="300"
+style="stroke:rgb(99,99,99);stroke-width:2"/>
+				</pre>
+			<p>折线 <polyline> 
+				<pre>
+polyline points="0,0 0,20 20,20 20,40 40,40 40,60"
+style="fill:white;stroke:red;stroke-width:2"/>
+				</pre>
+			<p>多边形 <polygon>
+				<pre>
+polygon points="220,100 300,210 170,250"
+style="fill:#cccccc;
+stroke:#000000;stroke-width:1"/>
+				</pre>
+			<p>路径 <path> 
+          <pre>
+path d="M250 150 L150 350 L350 350 Z" />
+          </pre>
+            
+	</body>
+</html>
