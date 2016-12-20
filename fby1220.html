@@ -1,1 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#container{
+				width: 130px;
+				overflow: hidden;
+				/*overflow-x: scroll;*/
+			}
+			#inCon{
+				width: 265px;
+			}
+			span{
+				border: 1px solid #000;
+				display: block;
+				width: 130px;
+				float: left;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	</head>
+	<body>
+		<h2>音频、跑马灯的学习操作过程</h2>
+		<br/>
+		<h3>1、音频</h3>
+		<p>1、先载入video;	</p>
+		<p>2、通过点击播放按钮开始播放音频；</p>
+		<div>
+			<pre>
+涉及到的代码都是部分代码
 
+
+start.addEventListener("click",videosplay);
+function videosplay(){
+if(start.innerText=="播放"){
+	videos.play();
+	start.innerText="暂停";
+}else{
+	videos.pause();
+	start.innerText="播放";
+}
+}
+            </pre>
+        </div>
+<p>3、设置进度条、缓存条</p>
+		<div>
+			<pre>
+
+progressBar4.onmousedown = function() { //鼠标摁下
+	m = event.clientX;
+	progressBar4.style.marginLeft = m + "px";
+	isDown = true;
+}
+progressBar1.onmousemove = function() { //鼠标移动
+	n = event.clientX - 5;
+	if(isDown == true) {
+		progressBar4.style.marginLeft = n + "px";
+	}
+}
+window.onmouseup = function() { //鼠标松开	
+	isDown = false;
+}
+progressBar1.addEventListener("click", fun, false); //点击控制进度
+function fun() {
+	x = event.clientX;
+	if(play.value == "暂停") {
+		videos.currentTime = x;
+	}
+	if(x >= 0 && x < 358 && play.value == "暂停") {
+		videos.play();
+	}
+}
+time = setInterval(function() {
+	text1.value = parseInt(videos.currentTime);//这是获取当前播放的时间
+	text2.value = parseInt(videos.duration);//这是总的时间
+	buff = videos.buffered.end(videos.buffered.length - 1);
+	progressBar2.style.width = videos.currentTime / videos.duration * 360 + "px";//进度条的长度
+	progressBar3.style.width = buff / videos.duration * 360 + "px";//缓存条的长度
+			</pre>
+		</div>
+<p>4、解决进度条与视频之间的联系</p>	
+			<div>
+<pre>
+	
+	if (videos.currentTime==videos.duration) {
+		play.value="播放";
+	}
+	if(!isDown) {
+		progressBar4.style.marginLeft = videos.currentTime / videos.duration * 360 - 5 + "px";
+	}
+}, 300)
+</pre>				
+			
+		</div>
+
+<p>5、上一个\下一个视频</p>
+<div>
+	<pre>
+next.onclick = function() {
+	sum++;//设置一个变量，使其点击时加1
+	videos.src = arr[sum].src;//获取数组值得到路径
+	foo();
+	play.value="暂停";
+	videos.play();
+}
+	</pre>
+</div>
+
+<p>6、播放的种类：重复播放、列表播放、随机播放</p>
+<div>
+	<pre>
+n=Math.ceil(Math.random*9)//随机获取一个0-9的数
+videos.src = arr[n].src;  //随机播放10个视频内的其中一个视频
+	</pre>
+	<pre>
+if(n==videos.duration){ 
+	videos.src = arr[a].src; //判断是否播放结束，结束就再继续播放当前视频
+}  //应该有问题
+	</pre>
+	<pre>
+列表就是自动给变量加1，然后通过数组来设置路径
+	</pre>
+</div>
+
+<p>7、音量</p>
+<div>
+	<pre>
+videos=document.getElementById("video1");
+var n=videos.volume;
+function click(){
+	n--;
+	text.innerText=n*100;//这是减音量
+}
+function click(){
+	n++;
+	text.innerText=n*100;//这是加音量
+}
+	</pre>
+</div>
+
+     <h3>2、跑马灯</h3>
+     <div>
+     	<pre>
+  //首先要知道scroll，接着解决问题
+  //怎么处理循环
+  //怎么处理闪过去的问题
+var container=document.getElementById("container");			
+setInterval(function (){
+	container.scrollLeft+=10;
+	if(container.scrollLeft==113){
+	container.scrollLeft=0
+}
+},200)
+     	</pre>
+     </div>
+     <div id="container">
+			<div id="inCon">
+				<span id="txt1">
+					欢迎来到天成世纪
+				</span>
+				<span id="txt2">
+					欢迎来到天成世纪
+				</span>
+			</div>
+		</div>
+		
+		
+		<script type="text/javascript">
+			var container=document.getElementById("container");			
+			setInterval(function (){
+				container.scrollLeft+=10;
+				if(container.scrollLeft==130){
+				container.scrollLeft=0
+			}
+			},200)
+			
+		</script>
+	</body>
+</html>
