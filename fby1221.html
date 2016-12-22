@@ -100,7 +100,7 @@ function ballMove(){
 //参数传递；运算符判断
 //碰撞检测
 function testPz(x1,y1,w,h,x2,y2){
-	if(x2>x1&&y2>y1&&x2<x1+w&&y2<y1+h){
+	if(x2>x1 && y2>y1 && x2<x1+w&&y < y1+h ){
 		return true;
 	}else{
     	return false;
