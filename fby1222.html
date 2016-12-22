@@ -1,1 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			 *{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				width: 800px;
+				margin: auto;
+				background: #ececec;
+			}
+			h2{
+				width: 800px;
+				margin: auto;
+			}
+			h3{
+				width: 800px;
+				margin: auto;
+			}
+			p{
+				width: 800px;
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>AJAX的了解及简单运用</h2>
+		<br/>
+		<p>通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</p>
+		<h3>XMLHttpRequest 对象</h3>
+		<div>
+			<pre>
+//实例
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();      //一般的浏览器都可以用这个
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");//IE5\6需要用这个
+  }
+
+			</pre>
+		</div>
+		
+
+		<p>XMLHttpRequest请求：open();send()</p>
+		<div>
+			<pre>
+open(method,url,async)
+method：请求的类型；GET 或 POST 
+url：文件在服务器上的位置 
+async：true（异步）或 false（同步） 
+xmlhttp.open("GET","test1.txt",true);
+
+send(string)//将请求发送到服务器
+仅用于 POST 请求 
+			</pre>
+			<br/>
+			<div style="color: red;">
+<p>get与post的区别</p>
+<p>无法使用缓存文件（更新服务器上的文件或数据库） 
+<p>向服务器发送大量数据（POST 没有数据量限制） //重要
+<p>发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠  //重要
+			</div>
+		</div>
+		<p>responseText 或 responseXML 属性</p>
+		<div>
+//获得来自服务器的响应
+document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+		</div>
+				<p>onreadystatechange 事件</p>
+		<div>
+			<pre>
+onreadystatechange  存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。
+readyState  存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。
+
+0: 请求未初始化 
+1: 服务器连接已建立 
+2: 请求已接收 
+3: 请求处理中 
+4: 请求已完成，且响应已就绪 
+
+status   200 表示成功 404 未找到网页
+
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+    }
+  }
+			</pre>
+		</div>
+		<p>发送数据在本地服务器打开</p>
+		<div>
+			<pre>
+//这里先要在其他地方创建一个文件夹并写入你要传输的数据 img src="这里写相对于你主体文件的路径">
+var xhr = new XMLHttpRequest();			
+xhr.onreadystatechange = function(msg){
+	if(xhr.readyState == 4){
+		if(xhr.status == 200){
+			console.log(msg.response);
+		}
+	}
+}
+xhr.open("GET","url");//这里的url写上面图片所在的路径
+xhr.send();
+			</pre>
+		</div>
+		<p>实例</p>
+		<div>
+<pre>
+<button id="btn">点我显示数据</button>
+<table border="" cellspacing="" cellpadding="" id="table">
+</table>
+var btn = document.getElementById("btn");  
+btn.onclick = function(e) {   //点击按钮执行函数
+	showDate();
+}
+function showDate() {
+	var table = document.getElementById("table");  
+	var xhr = new XMLHttpRequest();  //创建一个XMLHttpRequest对象
+	xhr.onreadystatechange = function() {  //请求发送到服务器执行响应任务
+if(xhr.readyState == 4) {  //返回XMLHTTP请求的当前状态
+  if(xhr.status == 200) {  //Http网页请求状态
+	var a = JSON.parse(xhr.responseText);  //字符串JSON格式的转换
+	for(var i = 0; i < a.length; i++) { //通过循环遍历数组里面的所有对象
+		var o = a[i];    //对象
+		var n = table.insertRow();  //在表格里添加新的行
+		n.insertCell().innerHTML = "姓名:" + o.name; //行里面的列的值
+		n.insertCell().innerHTML = "性别:" + o.sex;
+		<!--n.insertCell().innerHTML = "年龄:" + o.age;
+		n.insertCell().innerHTML = "电话:" + o.phoneNumber;
+		n.insertCell().innerHTML = "大学:" + o.university;
+		n.insertCell().innerHTML = "专业:" + o.major;
+		n.insertCell().innerHTML = "学院:" + o.college;
+		n.insertCell().innerHTML = "入学年份:" + o.入学年份;-->
+	  }
+    }
+  }
+}
+	xhr.open("GET", "img/img.txt");    //请求的类型，文件在服务器上的位置
+	xhr.send();
+}
+</pre>
+	</div>
+	<img src="http://image18.poco.cn/mypoco/myphoto/20161222/19/1848383382016122219555704_640.jpg?717x133_130"/>
+	</body>
+</html>
 
