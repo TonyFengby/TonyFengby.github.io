@@ -1,1 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				width: 800px;
+				margin: auto;
+				background: #ececec;
+			}
+			h2{
+				width: 800px;
+				margin: auto;
+			}
+			h3{
+				width: 800px;
+				margin: auto;
+			}
+			p{
+				width: 800px;
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<br/>
+		<h2>设计模式、浅(深)拷贝</h2>
+		<br/>
+		<h3>设计模式</h3>
+		<br/>		
+		<div>
+			<p>设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。</p>
+		   <br/>
+		   <p>
+▪ 工厂模式
+▪ 抽象工厂模式
+▪ 建造者模式
+▪ 原型模式
+▪ 单例模式
+▪ 适配器模式
+▪ 桥接模式
+▪ 组合模式
+▪ 装饰模式
+▪ 门面模式
+▪ 享元模式
+▪ 代理模式
+▪ 职责链模式
+▪ 命令模式
+▪ 解析器模式
+▪ 迭代器模式
+▪ 中介模式
+▪ 备忘录模式
+▪ 观察者模式
+▪ 状态模式
+▪ 策略模式
+▪ 模版模式
+▪ 访问者模式
+等其他各种模式
+		    </p>
+		</div>
+		
+		<br/>
+		<p>view control model</p>
+		<div>
+			<p>这三者的关系是单向的，不可互逆</p>
+			<p>view接受数据传给control，让它处理数据，将同一类东西放在同一个文件中，不同的放在不同的文件，处理完数据再传给model，它将数据储存，最后让view显示数据内容
+		</div>
+		<br/>
+		<h3>浅拷贝   ==浅复制</h3>
+					
+<div>
+	<p>浅拷贝是指源对象与拷贝对象共用一份实体，仅仅是引用的变量不同（名称不同）。对其中任何一个对象的改动都会影响另外一个对象。举个例子，一个人一开始叫张三，后来改名叫李四了，可是还是同一个人，不管是张三缺胳膊少腿还是李四缺胳膊少腿，都是这个人倒霉。</p>
+			<pre>
+var obj = {str:"你好，对象",arr:[1,2,3]};
+var objCopy = copyObject(obj);
+function copyObject(_obj){
+var temp = {};
+for (var prop in _obj) {
+	if(_obj.hasOwnProperty(prop)){
+		temp[prop] = _obj[prop]
+	}
+}
+return temp;
+}
 
+<p>简单来说，浅复制只复制一层对象的属性</p>
+		</pre>
+</div>
+<br/>
+<h3>深拷贝  ==深复制</h3>
+<div>
+	<p>深拷贝是指源对象与拷贝对象互相独立，其中任何一个对象的改动都不会对另外一个对象造成影响。举个例子，一个人名叫张三，后来用他克隆（假设法律允许）了另外一个人，叫李四，不管是张三缺胳膊少腿还是李四缺胳膊少腿都不会影响另外一个人。比较典型的就是Value（值）对象，如预定义类型Int32，Double，以及结构（struct），枚举（Enum）等	</p>
+	<pre>
+var cloneObj = function(obj){
+var str, newobj = obj.constructor === Array ? [] : {};
+if(typeof obj !== 'object'){
+    return;
+} else if(window.JSON){
+    str = JSON.stringify(obj), //系列化对象
+    newobj = JSON.parse(str); //还原
+} else {
+    for(var i in obj){
+    newobj[i] = typeof obj[i] === 'object' ? 
+    cloneObj(obj[i]) : obj[i]; 
+    }
+}
+return newobj;
+};
+
+	</pre>
+</div>
+
+	</body>
+</html>
