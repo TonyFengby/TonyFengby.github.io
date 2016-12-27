@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="style.css"/>
+	</head>
+	<body>
+		<h2>JQuery</h2>
+		<h3>1、文档处理</h3>
+		<div>
+			<pre>
+
+//插在后面
+console.log($("#div").append("haha"))
+console.log($("haha").appendTo("#div"))
+
+//插在前面
+console.log($("#div").prepend("haha"));
+console.log($("haha").prependTo("#div"))
+
+//跟前面的div是同级插在后面
+  console.log($("#div").after("haha"));
+  console.log($("<span>haha</span>").insertAfter("#div"));
+  
+//跟前面的div同级插在前面
+  console.log($("#div").before("haha"));
+  console.log($("<span>haha</span>").insertBefore("#div"));
+  
+//清空、移除
+ console.log($("#div").empty());//清空元素内的内容
+  console.log($("#div").remove());//移除包括DIV在内的所有东西                 
+  console.log($("#div").clone().prependTo("#div"))//克隆复制
+			</pre>
+		</div>
+		<br/>
+		<h3>2、属性</h3>
+		<div>
+			<pre>
+$("#img").attr("src",function(_attr,_value){//attr参数不能为空
+	console.log(_attr+","+_value)//_attr显示的是图片的索引值，就是第几个——value是图片路径
+	console.log(this.src);//这样会显示绝对路径
+	return _value=" "//如果写了return 那么会把所有的选择器（img）的标签都替换掉
+	})
+
+ $("#btn").click(function(){
+	$("img").removeAttr("src")//删除img标签的属性src
+})
+
+ console.log($("#div").addClass("cssClass"));
+  console.log($("#div").removeClass("cssClass"));                   
+  console.log($("#div").toggleClass("cssClass"));
+  
+//原生javascript innerHTML属性
+console.log($("#div").html('<span>shabi</span>'))//空的时候显示DIV里面的值，有值的时候就是你写的
+
+//原生javascript input value属性
+console.log($("#div").val("shabi"))//只能在表单(input value)的时候有用
+
+//原生javascript innerText属性
+console.log($("#div").text('<span>shabi</span>'))
+			</pre>
+		</div>
+		<br/>
+		<h3>3、CSS</h3>
+		<div>
+			<pre>
+//获取第一个匹配元素内部区域高度（包括补白、不包括边框）。
+  var p=$("p:first");
+ console.log($("p:last").text(p.innerHeight()));
+    
+    //获取第一个匹配元素外部高度（默认包括补白和边框）。
+    //不过要在里面设置true才计算边距
+  var p=$("p:first");
+  console.log($("p:first").text(p.outerHeight(true)));
+  
+    //获取匹配元素相对滚动条顶部的偏移。
+  var p = $("p:first");
+	$("p:last").text(p.scrollTop() );
+console.log( $("div.demo").scrollTop(300))
+			</pre>
+		</div>
+		
+		<h3>4、动画效果</h3>
+		<div>
+			<pre>
+//显示和隐藏
+ console.log($("#div").hide())
+ console.log($("#div").show())
+ console.log($("#div").toggle())
+     
+//滑动、卷帘式、门帘
+ console.log($("#div").slideDown("slow"))//下去
+ console.log($("#div").slideUp("slow"))//上来
+ console.log($("#div").slideToggle("slow"))//两个结合
+     
+//淡入淡出
+ console.log($("#div").fadeToggle("slow","linear"))
+     
+ //要用对象
+ $("#div").animate({
+    width: "90%",
+    height: "100%", 
+    fontSize: "2em", 
+    borderWidth: 10
+  }, 1000 );
+		  
+//让指定元素左右移动   
+$("#div").animate({left: '+50px'}, "slow");			
+$("#div").animate({left: '-50px'}, "slow");
+
+ //在600毫秒内切换段落的高度和透明度
+$("#div").animate({
+   height: 'toggle', opacity: 'toggle'
+ }, "slow");
+
+//用500毫秒将段落移到left为50的地方并且完全清晰显示出来（透明度为1）
+ $("#div").animate({
+   left: 50, opacity: '0.1'
+ }, 500);
+			</pre>
+		</div>
+		
+		<h3>5、ajax</h3>
+		<div>
+			<pre>
+//通过ajax来更新数据，
+ $.ajax({
+   	type:"get",  //(默认: "GET") 请求方式 ("POST" 或 "GET")
+   	url:"txt.txt",//(默认: 当前页地址) 发送请求的地址
+   	data:"",//发送到服务器的数据。
+   	dataType:"text", //预期服务器返回的数据类型。
+   	success:function(msg){//请求成功后的回调函数。
+   		console.log("服务器返回成功："+msg);
+   		$("#div").html(msg);
+   	},error:function(error){// 请求失败时调用此函数。
+   		console.log("服务器返回失败："+error)
+   	}
+   });
+   
+			</pre>
+		</div>
+	</body>
+</html>
