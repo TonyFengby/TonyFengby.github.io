@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="style.css"/>
+	</head>
+	<body>
+		<h2>JQuery</h2>
+		<h3>用JQuery和AJAX生成表格和传递数据</h3>
+		<div>
+			<p>//布局和其他一些样式没写</p>
+			<p>//主要写JQuery和AJAX</p>
+			<pre>
+
+$(document).ready(function() {
+$("#btn").click(function() {
+var _data = {};    
+_data.pageNum = 1;   //数据页数
+_data.pageSize = 20;  //一页的数据量
+
+var _url = "http://www.hemijiaoyu.com/service/searchApply"; 
+var $name = $("#name").val();    //名字的值
+var $phone = $("#phone").val();   //电话的值
+var $college = $("#college").val(); //学校的值
+if($name != "") {  //判断是否输入为空
+	_data.name = $name;   //从数据库调出匹配成功的数据
+}
+if($phone != "") {
+	_data.mobile = $phone;
+}
+if($college != "") {
+	_data.college = $college;
+}
+$.ajax({
+	type: "GET",
+	url: _url,
+	dataType: "JSON",
+	data: _data,
+	success: function(msg) {
+	console.log(msg)
+		
+	var arr = msg.list;   //因为list是一个数组，所以将它放入一个数组
+	console.log(arr);
+	var l = arr.length;   
+	var str = "";    //拼接表格
+	for(var i = 0; i < l; i++) {
+		str += "tr id=" + i + ">";    //每行输出数组里的一个对象
+		var obj = arr[i];		
+		str += "<td>" + obj.name + "</td>";    //将对象里的值拼接
+		str += "<td>" + obj.sex + "</td>";
+		str += "<td>" + obj.birthday + "</td>";
+		str += "<td>" + obj.mobile + "</td>";
+		str += "<td>" + obj.political + "</td>";
+		str += "<td>" + obj.qq + "</td>";
+		str += "<td>" + obj.college + "</td>";
+		str += "<td>" + obj.faculty + "</td>";
+		str += "<td>" + obj.major + "</td>";
+		str += "<td>" + obj.source + "</td>";
+		str += "/tr>";
+	}
+	str += "/table>";
+	$("#div").html(str)
+	$("tr").dblclick(function(e) {
+		var _obj = arr[e.currentTarget.id];    //e.currentTarget.id获取它是第几行的值,所以在tr要设置id
+		console.log(e.currentTarget.id);
+		$("#mask").fadeIn("slow", "linear");   //点击每行时跳出一个界面
+		$("#info_name").text(_obj.name);    //在每个对应名称后读入对应数据
+		$("#info_sex").text(_obj.sex);
+		$("#info_birthday").text(_obj.birthday);
+		$("#info_mobile").text(_obj.mobile);
+		$("#info_political").text(_obj.political);
+		$("#info_qq").text(_obj.qq);
+		$("#info_college").text(_obj.college);
+		$("#info_faculty").text(_obj.faculty);
+		$("#info_major").text(_obj.major);
+		$("#info_fatherName").text(_obj.fatherName);
+		$("#info_fatherMobile").text(_obj.fatherMobile);
+		$("#info_matherName").text(_obj.matherName);
+		$("#info_matherMobile").text(_obj.matherMobile);
+		$("#info_homeAddress").text(_obj.homeAddress);
+		$("#info_source").text(_obj.source);
+		$("#info_majorMemo").text(_obj.majorMemo);
+		$("#info_selfMemo").text(_obj.selfMemo);
+	})
+	$("#closeBtn").click(function() {    //点击X关闭页面
+		$("#mask").fadeOut("slow", "linear")     
+	})
+	},
+	error: function(error) {
+		console.log("服务器返回失败：" + error);
+	}
+});
+})
+})
+
+
+			</pre>
+		</div>
+	</body>
+</html>
