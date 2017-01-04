@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+	#allmap {width: 300px;height: 200px;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=rNyPvf4LieTb1ZSAI5fBngFAhVrK8PMj"></script>
+		<link rel="stylesheet" type="text/css" href="style.css"/>
+	</head>
+	<body>
+		
+		<h2>html5/百度地图地理定位/SQLite</h2>
+		<br />
+		<h3>html5</h3>
+		<div>
+			<pre>
+用于绘画的 canvas 元素 
+用于媒介回放的 video 和 audio 元素 
+对本地离线存储的更好的支持 
+新的特殊内容元素，比如 article、footer、header、nav、section 
+新的表单控件，比如 calendar、date、time、email、url、search 
+			</pre>
+		</div>
+		<br />
+		<p>新增标签的用法</p>
+		<div>
+			<pre>
+article> 标签规定独立的自包含内容。
+一篇文章应有其自身的意义，应该有可能独立于站点的其余部分对其进行分发。
+article> 元素的潜在来源：
+论坛帖子 
+报纸文章 
+博客条目 
+用户评论 			
+
+article>
+  <p>Windows Internet Explorer 9（简称 IE9）于 2011 年 3 月 14 日发布.....</p>
+/article>
+
+aside 的内容应该与附近的内容相关
+aside>
+The Epcot Center is a theme park in Disney World, Florida.
+/aside>
+
+figure 用作文档中插图的图像：
+元素的内容应该与主内容相关，但如果被删除，则不应对文档流产生影响
+figure>
+  <img src="shanghai_lupu_bridge.jpg" width="100" height="50" alt="图片未加载"/>
+/figure>
+
+footer 标签定义文档或节的页脚
+页脚通常包含文档的作者、版权信息、使用条款链接、联系信息等等
+
+header 标签定义文档的页眉（介绍信息）。
+
+nav 标签定义导航链接的部分
+
+section 标签定义文档中的节（section、区段）。比如章节、页眉、页脚或文档中的其他部分
+section>
+  <p>The People's Republic of China was born in 1949...</p>
+/section>
+
+audio 标签定义声音，比如音乐或其他音频流
+video 标签定义视频，比如电影片段或其他视频流
+
+//这些是常用的，还有一些可以自己再去了解
+			</pre>
+		</div>	
+		<br />
+		
+		<h3>地理定位</h3>
+		<div>
+			<pre>
+//这个不需要自己能写出来，只要能看懂会修改就可以
+script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=您的密钥">/script>
+// 百度地图API功能
+	var map = new BMap.Map("allmap");    // 创建Map实例
+	map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
+	map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+	map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+			</pre>
+		</div>
+		<div id="allmap"></div>
+        <script type="text/javascript">
+			// 百度地图API功能
+			var map = new BMap.Map("allmap");    // 创建Map实例
+			map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
+			map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+			map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+			map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+        </script>
+        
+        
+		<h3>SQLite</h3>
+		<div>
+			<pre>
+SQLite是一个进程内的库，实现了自给自足的、无服务器的、零配置的、事务性的 SQL 数据库引擎。它是一个零配置的数据库，这意味着与其他数据库一样，您不需要在系统中配置。
+就像其他数据库，SQLite 引擎不是一个独立的进程，可以按应用程序需求进行静态或动态连接。SQLite 直接访问其存储文件
+			</pre>
+		</div>
+		
+        <div>
+        	<pre>
+//这是增加
+insert into TB (ID,name,age,sex,phoneNum) values(6,"哈哈",26,"女",12390809)
+        	</pre>
+        </div>
+        <br />
+        <div>
+        	<pre>
+//这是删除
+delete from TB where ID=3
+        	</pre>
+        </div>       
+        <br />
+        <div>
+        	<pre>
+//这是查找
+select name from TB where name='张三'
+        	</pre>
+        </div>       
+        <br />
+        <div>
+        	<pre>
+//这是修改
+update TB set name="你好" where ID=1
+<img src=""/>
+        	</pre>
+        </div>
+        
+        <br />
+        <div>
+        	<pre>
+//这是增加删除表格
+create table CLASS(ID INT PRIMARY NOT NULL,NAME TEXT NOT NULL,AGE INT NOT NULL)
+drop table class
+        	</pre>
+        </div>
+	</body>
+</html>
