@@ -1,1 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+    <link rel="stylesheet" type="text/css" href="style1.css"/>
+	</head>
+	<body>
+		<h2>cookies/localStorage/css3</h2>
+		<br />
+		<h3>cookies</h3>
+		<p>利用用户在提示框中输入的数据创建一个 JavaScript Cookie，当该用户再次访问该页面时，根据 cookie 中的信息发出欢迎信息。</p>
+		<br />
+		<p>名字 cookie </p>
+		<p>当访问者首次访问页面时，他或她也许会填写他/她们的名字。名字会存储于 cookie 中。当访问者再次访问网站时，他们会收到类似 "Welcome John Doe!" 的欢迎词。而名字则是从 cookie 中取回的。 </p>
+		<br />
+		<div>
+			<h4>创建和存储 cookie</h4>
+			<pre>
+function setCookie(c_name,value,expiredays)
+{
+var exdate=new Date()
+exdate.setDate(exdate.getDate()+expiredays)
+document.cookie=c_name+ "=" +escape(value)+
+((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+}
+			</pre>
+		</div>
+		<br />
+		<div>
+			<h4>检查是否已设置 cookie</h4>
+			<pre>
+function getCookie(c_name)
+{
+if (document.cookie.length>0)
+  {
+  c_start=document.cookie.indexOf(c_name + "=")
+  if (c_start!=-1)
+    { 
+    c_start=c_start + c_name.length+1 
+    c_end=document.cookie.indexOf(";",c_start)
+    if (c_end==-1) c_end=document.cookie.length
+    return unescape(document.cookie.substring(c_start,c_end))
+    } 
+  }
+return ""
+}
+			</pre>
+		</div>
+		
+		<br />
+		<div>
+			<h4>如果 cookie 已设置，则显示欢迎词，否则显示提示框来要求用户输入名字</h4>
+			<pre>
+function checkCookie()
+{
+username=getCookie('username')
+if (username!=null && username!="")
+  {alert('Welcome again '+username+'!')}
+else 
+  {
+  username=prompt('Please enter your name:',"")
+  if (username!=null && username!="")
+    {
+    setCookie('username',username,365)
+    }
+  }
+}
+			</pre>
+		</div>
+		<br />
+		
+		<h3>localStorage</h3>
+		
+		<div>
+			<p>增加</p>
+			<pre>
+window.localStorage.setItem()
+			</pre>
+			<p>删除一个</p>
+			<pre>
+window.localStorage.removeItem()
+			</pre>
+			<p>删除全部</p>
+			<pre>
+window.localStorage.clear()
+			</pre>
+		</div>
+		<br />
+		<p>实例</p>
+		<div>
+			<pre>
+var song = document.getElementById("song");  
+var btn = document.getElementById("btn");
+var songName="songName";	//定义一个字符串
+var n = 0;
+btn.onclick = function (e){
+	songName+n;      
+	n++;          //点击时改变字符串
+	inputInfo(song.value);  //调用函数
+	
+}
+
+function inputInfo(song){//songName+n  只能有一个相同键，所以每次点击都要改变键名，不然会被覆盖
+	window.localStorage.setItem(songName+n,song)//存储一个歌名
+}
+			</pre>
+		</div>
+		<br />
+		
+		<h3>css3</h3>
+		<p>立方体旋转</p>
+		<div>
+			<pre>
+body{
+	margin: 0;
+	padding: 0;
+}
+#cude{
+	margin: 100px auto;
+	width: 400px;
+	height: 400px;
+	position: relative;
+	/*transform: rotateX(45deg) rotateY(45deg);*/
+	animation: myfirst 2s infinite;
+	transform-style: preserve-3d;
+	/*perspective: 1000px;*/
+}
+#front,#back,#left,#right,#top,#bottom{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	font-size: 30px;
+	line-height: 400px;
+	text-align: center;
+	font-family: "微软雅黑";
+	top: 0;
+	left: 0;
+}
+#left{
+	background: #0000FF;
+	transform: rotateY(90deg) translateZ(-200px);
+}
+#right{
+	background: red;
+	transform: rotateY(90deg) translateZ(200px);
+}
+#top{
+	background: gold;
+	transform: rotateX(90deg) translateZ(200px);
+}
+#bottom{
+	background: palevioletred;
+	transform: rotateX(90deg) translateZ(-200px);
+}
+#front{
+	background: peachpuff;
+	transform: translateZ(200px);
+}
+#back{
+	background: green;
+	transform: translateZ(-200px);
+}
+
+@keyframes myfirst{
+	0%   {transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg)}
+	100% {transform:rotateX(180deg) rotateY(180deg) rotateZ(180deg)}
+}
+
+			</pre>
+		</div>
+	</body>
+</html>
 
