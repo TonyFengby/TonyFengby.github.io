@@ -1,0 +1,50 @@
+#cude{
+				margin: 100px auto;
+				width: 400px;
+				height: 400px;
+				position: relative;
+				
+				animation: myfirst 2s infinite;
+				transform-style: preserve-3d;
+				
+			}
+			#front,#back,#left,#right,#top,#bottom{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				font-size: 30px;
+				line-height: 400px;
+				text-align: center;
+				font-family: "微软雅黑";
+				top: 0;
+				left: 0;
+			}
+			#left{
+				background: #0000FF;
+				transform: rotateY(90deg) translateZ(-200px);
+			}
+			#right{
+				background: red;
+				transform: rotateY(90deg) translateZ(200px);
+			}
+			#top{
+				background: gold;
+				transform: rotateX(90deg) translateZ(200px);
+			}
+			#bottom{
+				background: palevioletred;
+				transform: rotateX(90deg) translateZ(-200px);
+			}
+			#front{
+				background: peachpuff;
+				transform: translateZ(200px);
+			}
+			#back{
+				background: green;
+				transform: translateZ(-200px);
+			}
+			
+			@keyframes myfirst{
+				0%   {transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg)}
+				100% {transform:rotateX(180deg) rotateY(180deg) rotateZ(180deg)}
+			}
