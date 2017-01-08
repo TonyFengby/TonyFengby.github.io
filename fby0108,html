@@ -1,1 +1,297 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>		
+		 <style type="text/css">
+		 
+        body,div,ul,li,ol,dl,dt,p,dd,img,input,a,span,h1,h2,h3,h4{padding:0; margin:0; border:0; list-style:none;}
+        .wrapper{width:600px; height: 380px; margin: 0 auto; margin-top: 100px;}
+        .tab{ border:1px solid #ddd; border-bottom: 0; height: 36px; width: 320px;}
+        .tab li{ position: relative; float: left; width: 80px; height: 34px; line-height: 34px; text-align: center; cursor: pointer;
+            border-top:4px solid #fff;}
+        .tab span{ position: absolute;right: 0;top:10px;background: #ddd;width: 1px;height: 14px;overflow: hidden; }
+        .products{ width: 600px;border:1px solid #ddd;height: 300px;}
+        .products .main{float: left;display: none;}
+        .products .main.selected{display: block;}
+        .tab li.active{border-color: red; border-bottom: 0;}
+        #cude{
+	margin: 100px auto;
+	width: 200px;
+	height: 200px;
+	position: relative;
+	
+	animation: myfirst 2s infinite;
+	transform-style: preserve-3d;
+	
+}
+#front,#back,#left,#right,#top,#bottom{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	font-size: 30px;
+	line-height: 200px;
+	text-align: center;
+	font-family: "微软雅黑";
+	top: 0;
+	left: 0;
+}
+#left{
+	background: #0000FF;
+	transform: rotateY(90deg) translateZ(-100px);
+}
+#right{
+	background: red;
+	transform: rotateY(90deg) translateZ(100px);
+}
+#top{
+	background: gold;
+	transform: rotateX(90deg) translateZ(100px);
+}
+#bottom{
+	background: palevioletred;
+	transform: rotateX(90deg) translateZ(-100px);
+}
+#front{
+	background: peachpuff;
+	transform: translateZ(100px);
+}
+#back{
+	background: green;
+	transform: translateZ(-100px);
+}
+
+@keyframes myfirst{
+	0%   {transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg)}
+	100% {transform:rotateX(180deg) rotateY(180deg) rotateZ(180deg)}
+}	
+#transf{
+				width: 200px;
+				height: 200px;
+				margin: 100px auto;
+				position: relative;
+				transform-style: preserve-3d;
+			}
+			#transf::before,#transf::after{
+				content: "";
+				width: 100%;
+				height: 100%;
+				border-radius: 200px;
+			    display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				transition: all 1s;
+			}
+			#transf::before{
+				background: url(http://image18.poco.cn/mypoco/myphoto/20161207/19/18483833820161207195559057_640.jpg?479x285_130) right bottom;
+			}
+			#transf::after{
+				background: url(http://image18.poco.cn/mypoco/myphoto/20161207/19/18483833820161207195559057_640.jpg?479x285_130) left bottom;
+				
+				transform-origin:center bottom;
+			}
+			#transf:hover::after,#transf:hover::before{
+				
+				transform: rotateY(180deg);
+				/*backface-visibility:hidden;*/
+			}
+        <link rel="stylesheet" type="text/css" href="style1.css"/>
+    </style>
+	</head>
+	<body>
+		<h2>总结——联调、HTML5、CSS3</h2>
+		<h3>联调</h3>
+		<br />
+		
+		<div>
+			<pre>
+ $(document).ready(function(){
+   	$(".tab li").mouseenter(function(){
+   		$(this).addClass("active").siblings().removeClass("active")
+   		$(".main").eq($(this).index()).addClass("selected").siblings().removeClass("selected")
+   	})
+   })
+			</pre>
+		</div>
+		
+		<div class="wrapper">
+    <ul class="tab">
+        <li class="tab-item active">国际大牌<span>◆</span></li>
+        <li class="tab-item">国妆名牌<span>◆</span></li>
+        <li class="tab-item">清洁用品<span>◆</span></li>
+    </ul>
+    <div class="products">
+        <div class="main selected">
+            <a href="###"><img src="http://image18.poco.cn/mypoco/myphoto/20161207/19/18483833820161207195559057_640.jpg?479x285_130" alt=""/></a>
+        </div>
+        <div class="main">
+            <a href="###"><img src="http://image18.poco.cn/mypoco/myphoto/20161207/19/18483833820161207195620017_640.jpg?584x309_130" alt=""/></a>
+        </div>
+        <div class="main">
+            <a href="###"><img src="http://image18.poco.cn/mypoco/myphoto/20161207/19/18483833820161207195641075_640.jpg?542x210_130" alt=""/></a>
+        </div>
+    </div>
+</div>
+<script src="../1.4/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+   	$(".tab li").mouseenter(function(){
+   		$(this).addClass("active").siblings().removeClass("active")
+   		$(".main").eq($(this).index()).addClass("selected").siblings().removeClass("selected")
+   	})
+   })
+</script>
+
+<br />
+<h3>HTML5</h3>
+<div>
+	<pre>
+用于绘画的 canvas 元素 
+用于媒介回放的 video 和 audio 元素 
+对本地离线存储的更好的支持 
+新的特殊内容元素，比如 article、footer、header、nav、section 
+新的表单控件，比如 calendar、date、time、email、url、search 
+
+article> 标签规定独立的自包含内容。
+一篇文章应有其自身的意义，应该有可能独立于站点的其余部分对其进行分发。
+article> 元素的潜在来源：
+论坛帖子 
+报纸文章 
+博客条目 
+用户评论 			
+
+article>
+  <p>Windows Internet Explorer 9（简称 IE9）于 2011 年 3 月 14 日发布.....</p>
+/article>
+
+aside 的内容应该与附近的内容相关
+aside>
+The Epcot Center is a theme park in Disney World, Florida.
+/aside>
+
+figure 用作文档中插图的图像：
+元素的内容应该与主内容相关，但如果被删除，则不应对文档流产生影响
+figure>
+  <img src="shanghai_lupu_bridge.jpg" width="100" height="50" alt="图片未加载"/>
+/figure>
+
+footer 标签定义文档或节的页脚
+页脚通常包含文档的作者、版权信息、使用条款链接、联系信息等等
+
+header 标签定义文档的页眉（介绍信息）。
+
+nav 标签定义导航链接的部分
+
+section 标签定义文档中的节（section、区段）。比如章节、页眉、页脚或文档中的其他部分
+section>
+  <p>The People's Republic of China was born in 1949...</p>
+/section>
+
+audio 标签定义声音，比如音乐或其他音频流
+video 标签定义视频，比如电影片段或其他视频流
+	</pre>
+</div>
+
+<br />
+<h3>地理定位</h3>
+<div>
+	<pre>
+script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=您的密钥">/script>
+// 百度地图API功能
+	var map = new BMap.Map("allmap");    // 创建Map实例
+	map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
+	map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+	map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+	
+	getCurrentPosition() 方法 - 返回数据
+	coords.latitude //十进制数的纬度 
+        coords.longitude //十进制数的经度 
+
+	</pre>
+</div>
+
+<br />
+<h3>CSS3</h3>
+<p>矩阵旋转</p>
+
+<div>
+	<pre>
+#cude{
+	margin: 100px auto;
+	width: 400px;
+	height: 400px;
+	position: relative;
+	
+	animation: myfirst 2s infinite;
+	transform-style: preserve-3d;
+	
+}
+#front,#back,#left,#right,#top,#bottom{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	font-size: 30px;
+	line-height: 400px;
+	text-align: center;
+	font-family: "微软雅黑";
+	top: 0;
+	left: 0;
+}
+#left{
+	background: #0000FF;
+	transform: rotateY(90deg) translateZ(-200px);
+}
+#right{
+	background: red;
+	transform: rotateY(90deg) translateZ(200px);
+}
+#top{
+	background: gold;
+	transform: rotateX(90deg) translateZ(200px);
+}
+#bottom{
+	background: palevioletred;
+	transform: rotateX(90deg) translateZ(-200px);
+}
+#front{
+	background: peachpuff;
+	transform: translateZ(200px);
+}
+#back{
+	background: green;
+	transform: translateZ(-200px);
+}
+
+@keyframes myfirst{
+	0%   {transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg)}
+	100% {transform:rotateX(180deg) rotateY(180deg) rotateZ(180deg)}
+}		
+	</pre>
+</div>
+
+<div>
+	<div id="cude">
+			<div id="front">前面</div>
+			<div id="back">后面</div>
+			<div id="left">左面</div>
+			<div id="right">右面</div>
+			<div id="top">上面</div>
+			<div id="bottom">下面</div>
+		</div>
+</div>
+
+<br />
+<p>翻转背面动画</p>
+<div>
+	<pre>
+
+	</pre>
+
+	<div id="transf">
+			
+	</div>
+	</body>
+</html>
 
